@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Task A: Rating App Validation', () => {
 
-  test('Harus memverifikasi rating 1 sampai 5 (Image, Text, Number)', async ({ page }) => {
+  test('Verification of Rating App 1 to 5 stars (Image, Text, Number)', async ({ page }) => {
 
     await test.step('ARRANGE: Open Rating App and verify stars are visible', async () => {
       await page.goto('https://qaplayground.dev/apps/rating/');
