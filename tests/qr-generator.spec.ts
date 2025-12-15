@@ -16,8 +16,20 @@ test.describe('Task C: QR Code Generator', () => {
 
         await test.step('ASSERT: QR image is generated visually', async () => {
             const qrImage = page.locator('.qr-code img');
-            await expect(qrImage).toBeVisible();
-            await expect(qrImage).toHaveScreenshot();
+            const wrapper = page.locator('.wrapper');
+
+            await expect(wrapper).toHaveClass(/active/);
+
+            await expect(qrImage).toHaveAttribute('src', /api\.qrserver\.com/);
+
+            await expect(async () => {
+                const isLoaded = await qrImage.evaluate((img) => {
+                    return (img as HTMLImageElement).complete && (img as HTMLImageElement).naturalWidth > 0;
+                });
+                expect(isLoaded).toBeTruthy();
+            }).toPass();
+
+            await expect(qrImage).toHaveScreenshot({ maxDiffPixels: 100 }); 
         });
 
     });

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Links', () => {
+test.describe('Task D: Navigation Menu Links', () => {
 
   test('Should open each menu link in a new page via URL', async ({ page, context }) => {
 
